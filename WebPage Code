@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>escaVIT</title>
+
+    <style>
+        /* Keeping the default font from previous setup */
+        body {
+            font-family: 'Silkscreen', cursive; /* Default font */
+            margin: 0;
+            padding: 0;
+            /* background-color: #f4f4f4; /* Neutral background */
+            text-align: center;
+            background-image: url("img2.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        header {
+            background-color: #400356;
+            color: white;
+            padding: 15px;
+            font-size: 1.8rem;
+            font-family: 'Silkscreen', cursive; /* Font used for header */
+            position: relative;
+        }
+        .menu-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 10px;
+            top: 60px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            padding: 10px;
+            width: 180px;
+            text-align: left;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover {
+            background: #f2f2f2;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .input-area input {
+            padding: 10px;
+            font-size: 1rem;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 2px solid #ffcccb;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #400356;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #6a0e7a;
+        }
+        footer {
+            background-color: #400356;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+        .hotspot-container {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: left;
+        }
+        .places {
+            width: 40%;
+        }
+        .density {
+            width: 40%;
+        }
+        .place-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 45%;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            margin: 10px;
+        }
+
+        .place-image img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .place-info {
+            flex-grow: 1;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        .place-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .place-status {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .place-status-space {
+            font-size: 1rem;
+            color: #555;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+        }
+        .contact-info div {
+            text-align: left;
+        }
+        .contact-info img {
+            width: 40px;
+            height: 40px;
+            display: block;
+        }
+        .social-icons a {
+            margin-right: 10px;
+        }
+        .map-container {
+            width: 100%;
+            height: 300px;
+            margin-top: 30px;
+            background-color: #e0e0e0; /* Light grey background */
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        function showPage(page) {
+            document.getElementById("home").classList.add("hidden");
+            document.getElementById("hotspot").classList.add("hidden");
+            document.getElementById("contact").classList.add("hidden");
+
+            document.getElementById(page).classList.remove("hidden");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        escaVIT
+        <div id="dropdown" class="dropdown-menu">
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('hotspot')">Hotspot in VIT</a>
+            <a href="#" onclick="showPage('contact')">Contact Us</a>
+        </div>
+    </header>
+
+    <div id="home" class="container">
+        <h2>Welcome to escaVIT!</h2>
+        <p style="font-size: 1.2rem;">Hate the crowd, escape it.</p>
+        <div class="input-area">
+                <input type="text" placeholder="Enter location...">
+                <button class="btn">Search</button>
+        </div>
+        <div class="map-container">
+            <!-- Example map iframe for VIT Vellore Main Building -->
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.489746748187!2d78.21233511602951!3d12.981607790961245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad8270172b557d%3A0xe04211f2020e3b44!2sVIT+University+Main+Building!5e0!3m2!1sen!2sin!4v1614583721963!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe> -->
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.469361863766!2d79.15485807500887!3d12.969226287345761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad476fcd2f9ff1%3A0x21c986bcc05ebbd6!2sVIT%20Vellore!5e0!3m2!1sen!2sin!4v1706961004123!5m2!1sen!2sin" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+        
+        </div>
+    </div>
+
+    <div id="hotspot" class="container hidden">
+        <h2>Hotspot in VIT</h2>
+        <div class="hotspot-container">
+            <!-- Academic Blocks -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://i.ytimg.com/vi/TPDlZhASI50/maxresdefault.jpg" alt="MGB Block" />
+                </div>
+                <div class="place-info">
+                    <h3>MGB Block</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- Pearl Research Block -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://content.jdmagicbox.com/comp/vellore/y4/9999px416.x416.230625140448.a5y4/catalogue/pearl-research-park-prp-vellore-universities-oenbpwuIME.jpg" alt="Pearl Research Block" />
+                </div>
+                <div class="place-info">
+                    <h3>Pearl Research Block</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- SJT -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrLc1Wy1t81bciTuTJK3mYQmy9YWz_VH6sBA&s" alt="SJT" />
+                </div>
+                <div class="place-info">
+                    <h3>SJT</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- Technology Tower -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Technology_Tower%28VIT%29.jpg/640px-Technology_Tower%28VIT%29.jpg" alt="Technology Tower" />
+                </div>
+                <div class="place-info">
+                    <h3>Technology Tower</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- MGR Block -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://vit.ac.in/wp-content/uploads/2023/06/About-menu-image.webp" alt="MGR Block" />
+                </div>
+                <div class="place-info">
+                    <h3>MGR Block</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- CDMM -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://vit.ac.in/wp-content/uploads/2024/09/cdmm-home.webp" alt="CDMM" />
+                </div>
+                <div class="place-info">
+                    <h3>CDMM</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- SMV -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://bschool.vit.ac.in/wp-content/uploads/2023/08/smv.jpg" alt="SMV" />
+                </div>
+                <div class="place-info">
+                    <h3>SMV</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- Anna Auditorium -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://images.app.goo.gl/w4sfNaCowitGdMsJA" alt="Anna Auditorium" />
+                </div>
+                <div class="place-info">
+                    <h3>Anna Auditorium</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- Main Canteen -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://images.app.goo.gl/MuXcQPvzQMoMiE8UA" alt="Main Canteen" />
+                </div>
+                <div class="place-info">
+                    <h3>Main Canteen</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+
+            <!-- Periyar -->
+            <div class="place-item">
+                <div class="place-image">
+                    <img src="https://images.app.goo.gl/grKV6xNDE65rznKg8" alt="Periyar" />
+                </div>
+                <div class="place-info">
+                    <h3>Periyar</h3>
+                    <div class="place-status-space">Crowd Status: <span>Empty</span></div> <!-- Placeholder for crowd status -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="container hidden">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div>
+                <p><strong>Phone:</strong> +91 98765 43210</p>
+                <p><strong>Location:</strong> VIT University, Vellore</p>
+            </div>
+        </div>
+        <div class="social-icons">
+            <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/018/930/476/non_2x/facebook-logo-facebook-icon-transparent-free-png.png" alt="Facebook" width="30"></a>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/640px-Instagram_icon.png" alt="Instagram" width="30"></a>
+            <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/042/148/611/non_2x/new-twitter-x-logo-twitter-icon-x-social-media-icon-free-png.png" alt="X" width="30"></a>
+            <a href="#"><img src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-phone-icon-png-image_6315989.png" alt="WhatsApp" width="30"></a>
+            <a href="#"><img src="https://store-images.s-microsoft.com/image/apps.1719.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.abf46174-2d32-4f53-a6cd-644d5b2be452" alt="LinkedIn" width="30"></a>
+        </div>
+    </div>
+
+    <footer>&copy; 2025 escaVIT</footer>
+</body>
+</html>
